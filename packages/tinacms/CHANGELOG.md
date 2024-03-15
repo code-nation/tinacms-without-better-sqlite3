@@ -1,5 +1,11 @@
 # tinacms
 
+## 0.0.0
+
+### Minor Changes
+
+- 4ee685282: Bump minor version and run build/types commands
+
 ## 0.0.0-20240315110821
 
 ### Minor Changes
