@@ -1,5 +1,5 @@
 {
-  "name": "tinacms",
+  "name": "@codenation/tinacms",
   "version": "0.0.0-20240315110821",
   "main": "dist/index.js",
   "module": "./dist/index.mjs",
