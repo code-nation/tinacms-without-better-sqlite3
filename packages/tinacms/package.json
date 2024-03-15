@@ -158,6 +158,7 @@
     "react-dom": ">=16.14.0"
   },
   "publishConfig": {
+    "scope": "@codenation",
     "registry": "https://registry.npmjs.org"
   },
   "repository": {
