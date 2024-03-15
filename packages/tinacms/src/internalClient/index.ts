@@ -20,12 +20,12 @@ import {
   AuthProvider,
 } from '@tinacms/schema-tools'
 import { TinaCloudProject } from './types'
-import {
-  optionsToSearchIndexOptions,
-  parseSearchIndexResponse,
-  queryToSearchIndexQuery,
-  SearchClient,
-} from '@tinacms/search/dist/index-client'
+// import {
+//   optionsToSearchIndexOptions,
+//   parseSearchIndexResponse,
+//   queryToSearchIndexQuery,
+//   SearchClient,
+// } from '@tinacms/search/dist/index-client'
 import { AsyncData, asyncPoll } from './asyncPoll'
 import { LocalAuthProvider, TinaCloudAuthProvider } from './authProvider'
 
@@ -583,36 +583,37 @@ export class LocalClient extends Client {
   }
 }
 
-export class TinaCMSSearchClient implements SearchClient {
+// export class TinaCMSSearchClient implements SearchClient {
+export class TinaCMSSearchClient {
   constructor(
     private client: Client,
     private tinaSearchConfig?: { stopwordLanguages?: string[] }
   ) {}
-  async query(
-    query: string,
-    options?: {
-      limit?: number
-      cursor?: string
-    }
-  ): Promise<{
-    results: any[]
-    nextCursor: string | null
-    total: number
-    prevCursor: string | null
-  }> {
-    const q = queryToSearchIndexQuery(
-      query,
-      this.tinaSearchConfig?.stopwordLanguages
-    )
-    const opt = optionsToSearchIndexOptions(options)
-    const optionsParam = opt['PAGE'] ? `&options=${JSON.stringify(opt)}` : ''
-    const res = await this.client.authProvider.fetchWithToken(
-      `${this.client.contentApiBase}/searchIndex/${
-        this.client.clientId
-      }/${this.client.getBranch()}?q=${JSON.stringify(q)}${optionsParam}`
-    )
-    return parseSearchIndexResponse(await res.json(), options)
-  }
+  // async query(
+  //   query: string,
+  //   options?: {
+  //     limit?: number
+  //     cursor?: string
+  //   }
+  // ): Promise<{
+  //   results: any[]
+  //   nextCursor: string | null
+  //   total: number
+  //   prevCursor: string | null
+  // }> {
+  //   const q = queryToSearchIndexQuery(
+  //     query,
+  //     this.tinaSearchConfig?.stopwordLanguages
+  //   )
+  //   const opt = optionsToSearchIndexOptions(options)
+  //   const optionsParam = opt['PAGE'] ? `&options=${JSON.stringify(opt)}` : ''
+  //   const res = await this.client.authProvider.fetchWithToken(
+  //     `${this.client.contentApiBase}/searchIndex/${
+  //       this.client.clientId
+  //     }/${this.client.getBranch()}?q=${JSON.stringify(q)}${optionsParam}`
+  //   )
+  //   return parseSearchIndexResponse(await res.json(), options)
+  // }
 
   async del(ids: string[]): Promise<any> {
     const res = await this.client.authProvider.fetchWithToken(
@@ -652,28 +653,29 @@ export class TinaCMSSearchClient implements SearchClient {
   }
 }
 
-export class LocalSearchClient implements SearchClient {
+// export class LocalSearchClient implements SearchClient {
+export class LocalSearchClient {
   constructor(private client: Client) {}
-  async query(
-    query: string,
-    options?: {
-      limit?: number
-      cursor?: string
-    }
-  ): Promise<{
-    results: any[]
-    nextCursor: string | null
-    total: number
-    prevCursor: string | null
-  }> {
-    const q = queryToSearchIndexQuery(query)
-    const opt = optionsToSearchIndexOptions(options)
-    const optionsParam = opt['PAGE'] ? `&options=${JSON.stringify(opt)}` : ''
-    const res = await this.client.authProvider.fetchWithToken(
-      `http://localhost:4001/searchIndex?q=${JSON.stringify(q)}${optionsParam}`
-    )
-    return parseSearchIndexResponse(await res.json(), options)
-  }
+  // async query(
+  //   query: string,
+  //   options?: {
+  //     limit?: number
+  //     cursor?: string
+  //   }
+  // ): Promise<{
+  //   results: any[]
+  //   nextCursor: string | null
+  //   total: number
+  //   prevCursor: string | null
+  // }> {
+  //   const q = queryToSearchIndexQuery(query)
+  //   const opt = optionsToSearchIndexOptions(options)
+  //   const optionsParam = opt['PAGE'] ? `&options=${JSON.stringify(opt)}` : ''
+  //   const res = await this.client.authProvider.fetchWithToken(
+  //     `http://localhost:4001/searchIndex?q=${JSON.stringify(q)}${optionsParam}`
+  //   )
+  //   return parseSearchIndexResponse(await res.json(), options)
+  // }
 
   del(ids: string[]): Promise<any> {
     return Promise.resolve(undefined)

@@ -7,10 +7,10 @@ import type { Collection, TinaSchema } from '@tinacms/schema-tools'
 import type { Client } from '../internalClient'
 import type { CollectionResponse, DocumentForm } from './types'
 
-import {
-  SearchClient,
-  processDocumentForIndexing,
-} from '@tinacms/search/dist/index-client'
+// import {
+//   SearchClient,
+//   processDocumentForIndexing,
+// } from '@tinacms/search/dist/index-client'
 
 export interface FilterArgs {
   filterField: string
@@ -24,7 +24,8 @@ export class TinaAdminApi {
   api: Client
   useDataLayer: boolean
   schema: TinaSchema
-  searchClient?: SearchClient
+  // searchClient?: SearchClient
+  searchClient?: any
   maxSearchIndexFieldLength: number = 100
   constructor(cms: TinaCMS) {
     this.api = cms.api.tina
@@ -67,20 +68,20 @@ export class TinaAdminApi {
       { variables: { collection, relativePath, newRelativePath } }
     )
 
-    if (this.searchClient) {
-      const { document: doc } = await this.fetchDocument(
-        collection.name,
-        newRelativePath
-      )
-      const processed = processDocumentForIndexing(
-        doc['_values'],
-        `${collection.path}/${newRelativePath}`,
-        collection,
-        this.maxSearchIndexFieldLength
-      )
-      await this.searchClient.put([processed])
-      await this.searchClient.del([`${collection.name}:${relativePath}`])
-    }
+    // if (this.searchClient) {
+    //   const { document: doc } = await this.fetchDocument(
+    //     collection.name,
+    //     newRelativePath
+    //   )
+    //   const processed = processDocumentForIndexing(
+    //     doc['_values'],
+    //     `${collection.path}/${newRelativePath}`,
+    //     collection,
+    //     this.maxSearchIndexFieldLength
+    //   )
+    //   await this.searchClient.put([processed])
+    //   await this.searchClient.del([`${collection.name}:${relativePath}`])
+    // }
   }
 
   async deleteDocument({
@@ -340,19 +341,19 @@ export class TinaAdminApi {
       }
     )
 
-    if (this.searchClient) {
-      const { document: doc } = await this.fetchDocument(
-        collection.name,
-        relativePath
-      )
-      const processed = processDocumentForIndexing(
-        doc['_values'],
-        `${collection.path}/${relativePath}`,
-        collection,
-        this.maxSearchIndexFieldLength
-      )
-      await this.searchClient.put([processed])
-    }
+    // if (this.searchClient) {
+    //   const { document: doc } = await this.fetchDocument(
+    //     collection.name,
+    //     relativePath
+    //   )
+    //   const processed = processDocumentForIndexing(
+    //     doc['_values'],
+    //     `${collection.path}/${relativePath}`,
+    //     collection,
+    //     this.maxSearchIndexFieldLength
+    //   )
+    //   await this.searchClient.put([processed])
+    // }
 
     return response
   }
@@ -380,19 +381,19 @@ export class TinaAdminApi {
       }
     )
 
-    if (this.searchClient) {
-      const { document: doc } = await this.fetchDocument(
-        collection.name,
-        relativePath
-      )
-      const processed = processDocumentForIndexing(
-        doc['_values'],
-        `${collection.path}/${relativePath}`,
-        collection,
-        this.maxSearchIndexFieldLength
-      )
-      await this.searchClient.put([processed])
-    }
+    // if (this.searchClient) {
+    //   const { document: doc } = await this.fetchDocument(
+    //     collection.name,
+    //     relativePath
+    //   )
+    //   const processed = processDocumentForIndexing(
+    //     doc['_values'],
+    //     `${collection.path}/${relativePath}`,
+    //     collection,
+    //     this.maxSearchIndexFieldLength
+    //   )
+    //   await this.searchClient.put([processed])
+    // }
 
     return response
   }
