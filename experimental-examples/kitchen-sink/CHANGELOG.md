@@ -1,5 +1,12 @@
 # kitchen-sink-starter
 
+## 0.0.0-20240315110821
+
+### Patch Changes
+
+- Updated dependencies [d2e6a03e7]
+  - tinacms@0.0.0-20240315110821
+
 ## 0.0.0-20240315103535
 
 ### Patch Changes

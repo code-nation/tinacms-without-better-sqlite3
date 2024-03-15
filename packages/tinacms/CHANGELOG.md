@@ -1,5 +1,11 @@
 # tinacms
 
+## 0.0.0-20240315110821
+
+### Minor Changes
+
+- d2e6a03e7: Attempt to publish to @codenation scope on npm
+
 ## 0.0.0-20240315103535
 
 ### Patch Changes
