@@ -21679,6 +21679,7 @@ packages:
       whatwg-fetch: 3.6.2
     transitivePeerDependencies:
       - encoding
+    dev: false
 
   /isomorphic-fetch/3.0.0_encoding@0.1.13:
     resolution:
